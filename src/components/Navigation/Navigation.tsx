@@ -11,7 +11,6 @@ const navLinks = [
 
 const Navigation = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <>
