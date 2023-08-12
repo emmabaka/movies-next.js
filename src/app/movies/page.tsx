@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, FormEventHandler, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import fetchMovies from "@/requests/fetchMovies";
+import s from "./page.module.scss";
+
+const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
 interface Genres {
   id: number;
@@ -70,12 +74,27 @@ const Movies = () => {
           />
           <button type="submit">Search</button>
         </form>
-        <ul>
+        <ul className={s.moviesList}>
           {movies &&
-            movies.map((item: Movie) => (
-              <li key={item.id}>
-                <Link key={item.id} href={`/movies/${item.id}`}>
-                  {item.title}
+            movies.map((movie: Movie) => (
+              <li key={movie.id} className={s.movieContainer}>
+                <Link href={`/movies/${movie.id}`} className={s.movie}>
+                  <Image
+                    src={
+                      movie?.poster_path
+                        ? IMAGES_BASE_URL + movie.poster_path
+                        : "https://cdn.pixabay.com/photo/2017/05/13/09/04/question-mark-2309040_1280.jpg"
+                    }
+                    alt={movie?.title ?? movie?.name ?? ""}
+                    width={240}
+                    height={350}
+                  />
+                  <span className={s.movieTitle}>
+                    {movie.title ?? movie.name}
+                  </span>
+                  <span className={s.movieRating}>
+                    Rating: {movie.vote_average}/10
+                  </span>
                 </Link>
               </li>
             ))}
