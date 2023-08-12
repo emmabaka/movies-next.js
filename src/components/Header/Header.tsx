@@ -4,7 +4,7 @@ import s from "./Header.module.scss";
 const Header = () => {
   return (
     <header className={s.header}>
-      <div className="container">
+      <div className={`container ${s.headerContainer}`}>
         <Navigation />
       </div>
     </header>
