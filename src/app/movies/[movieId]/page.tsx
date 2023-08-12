@@ -1,6 +1,7 @@
 import Image from "next/image";
 import fetchMovieDetails from "@/requests/fetchMovieDetails";
 import Cast from "./components/Cast/Cast";
+import Reviews from "./components/Reviews/Reviews";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
@@ -81,6 +82,7 @@ const Movie = async ({ params }: Params) => {
           </div>
         </div>
         <Cast />
+        <Reviews movieId = {params.movieId}/>
       </div>
     </section>
   );

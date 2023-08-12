@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import fetchMovies from "@/requests/fetchMovies";
 
 interface Genres {
@@ -43,18 +43,14 @@ const Movies = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
-  const handleSubmit = (e: {
-    preventDefault: () => void;
-    target: { value: string };
-  }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFilter(searchMovies);
-    e.target.value = "";
   };
 
   const updateQuery = (e: { target: { value: any } }) => {
     const value = e.target.value;
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams.toString());
 
     value === "" ? params.delete("query") : params.set("query", value);
 
