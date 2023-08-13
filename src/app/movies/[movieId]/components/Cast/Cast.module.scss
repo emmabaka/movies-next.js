@@ -4,17 +4,32 @@
 }
 .swiper {
   padding: 20px;
+
+  @media (max-width: 860px) {
+    padding: 0;
+  }
 }
 .cardWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  padding: 5px;
 }
 .name {
   font-size: 14px;
+  text-align: center;
+
+  @media (max-width: 860px) {
+    font-size: 11px;
+    font-weight: 500;
+  }
 }
 .role {
   font-size: 14px;
   text-align: center;
+
+  @media (max-width: 860px) {
+    font-size: 11px;
+  }
 }
