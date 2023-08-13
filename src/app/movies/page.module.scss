@@ -1,3 +1,29 @@
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 30px;
+}
+.search {
+  outline: none;
+  padding: 10px;
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 5px;
+}
+.searchButton {
+  padding: 10px 15px;
+  color: black;
+  background-color: rgb(184, 184, 184);
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 5px;
+  transition: 250ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(168, 168, 168);
+    transition: 250ms ease;
+  }
+}
 .moviesList {
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +40,7 @@
   background-color: rgb(234, 238, 237);
   border-radius: 4px;
   transition: 250ms ease;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.05);

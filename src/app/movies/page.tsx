@@ -65,14 +65,14 @@ const Movies = () => {
   return (
     <section>
       <div className="container">
-        <form onSubmit={handleSubmit}>
-          <input
+        <form className={s.form} onSubmit={handleSubmit}>
+          <input className={s.search}
             type="text"
             name="query"
             onChange={updateQuery}
             value={searchMovies}
           />
-          <button type="submit">Search</button>
+          <button className={s.searchButton} type="submit">Search</button>
         </form>
         <ul className={s.moviesList}>
           {movies &&

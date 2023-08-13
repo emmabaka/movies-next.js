@@ -8,6 +8,7 @@ import { Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
+import s from "./Cast.module.scss";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
@@ -32,17 +33,18 @@ const Cast = () => {
 
   useEffect(() => {
     fetchMovieDetails("cast", movieId)
-      .then((res) => setCast(res.cast.toReversed()))
+      .then((res) => setCast(res.cast))
       .catch((e) => setCast([]));
   }, [movieId]);
 
   return (
-    <section>
+    <section className={s.cast}>
       <div className="container">
         <Swiper
+          className={s.swiper}
           modules={[Scrollbar, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={3}
+          spaceBetween={20}
+          slidesPerView={5}
           scrollbar={{ draggable: true }}
           autoplay={{
             delay: 2500,
@@ -52,7 +54,7 @@ const Cast = () => {
           {cast?.map((item: CastPerson) => {
             return (
               <SwiperSlide key={item.id}>
-                <div>
+                <div className={s.cardWrap}>
                   <Image
                     src={
                       item.profile_path
@@ -60,11 +62,11 @@ const Cast = () => {
                         : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
                     }
                     alt={item.name}
-                    width={200}
-                    height={300}
+                    width={140}
+                    height={200}
                   />
-                  <p>{item.name}</p>
-                  <p>Charachter: {item.character}</p>
+                  <p className={s.name}>{item.name}</p>
+                  <p className={s.role}>Role: {item.character}</p>
                 </div>
               </SwiperSlide>
             );

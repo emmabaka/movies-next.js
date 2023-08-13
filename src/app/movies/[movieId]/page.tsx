@@ -3,6 +3,7 @@ import fetchMovieDetails from "@/requests/fetchMovieDetails";
 import Cast from "./components/Cast/Cast";
 import Reviews from "./components/Reviews/Reviews";
 import BackButton from "./components/BackButton/BackButton";
+import s from "./page.module.scss";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
@@ -41,7 +42,7 @@ const Movie = async ({ params }: Params) => {
 
   return (
     <section>
-      <div className="container">
+      <div className={`container ${s.movieContainer}`}>
         <BackButton />
         <div>
           <Image
