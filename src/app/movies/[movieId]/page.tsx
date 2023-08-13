@@ -44,8 +44,9 @@ const Movie = async ({ params }: Params) => {
     <section>
       <div className={`container ${s.movieContainer}`}>
         <BackButton />
-        <div>
+        <div className={s.imgAndInfoWrap}>
           <Image
+            className={s.img}
             src={
               movie?.poster_path
                 ? IMAGES_BASE_URL + movie.poster_path
@@ -55,35 +56,40 @@ const Movie = async ({ params }: Params) => {
             width={200}
             height={300}
           />
-          <div>
-            <h2>{movie?.title ?? "Not found"}</h2>
-            <p>
-              Score: {movie?.vote_average ? movie?.vote_average : "No results"}
-            </p>
-            <p>
-              Number of voters:{" "}
-              {movie?.vote_count ? movie?.vote_count : "No results"}
-            </p>
-            <p>
-              Release date:{" "}
-              {movie?.release_date ? movie?.release_date : "No results"}
-            </p>
-            <p>
-              Original language:{" "}
-              {movie?.original_language
-                ? movie?.original_language
-                : "No results"}
-            </p>
-            <p>
-              Genres:{" "}
-              {movie?.genres
-                ? movie?.genres?.map((item: Genres) => item.name).join(", ")
-                : "No results"}
-            </p>
-            <h3>Overview</h3>
-            <p>{movie?.overview ? movie?.overview : "No results"}</p>
+          <div className={s.infoWrap}>
+            <h2 className={s.movieTitle}>{movie?.title ?? "Not found"}</h2>
+            <ul className={s.infoList}>
+              <li className={s.infoItem}>
+                Score:{" "}
+                {movie?.vote_average ? movie?.vote_average : "No results"}
+              </li>
+              <li className={s.infoItem}>
+                Number of voters:{" "}
+                {movie?.vote_count ? movie?.vote_count : "No results"}
+              </li>
+              <li className={s.infoItem}>
+                Release date:{" "}
+                {movie?.release_date ? movie?.release_date : "No results"}
+              </li>
+              <li className={s.infoItem}>
+                Original language:{" "}
+                {movie?.original_language
+                  ? movie?.original_language
+                  : "No results"}
+              </li>
+              <li className={s.infoItem}>
+                Genres:{" "}
+                {movie?.genres
+                  ? movie?.genres?.map((item: Genres) => item.name).join(", ")
+                  : "No results"}
+              </li>
+            </ul>
           </div>
         </div>
+        <section>
+          <h3>Overview</h3>
+          <p>{movie?.overview ? movie?.overview : "No results"}</p>
+        </section>
         <Cast />
         <Reviews movieId={params.movieId} />
       </div>

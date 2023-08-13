@@ -37,40 +37,38 @@ const Reviews = async ({ movieId }: { movieId: string }) => {
 
   return (
     <section>
-      <div className="container">
-        <h3>Reviews</h3>
-        {reviews?.results?.length === 0 || !reviews ? (
-          <p>We don`t have any reviews for this movie</p>
-        ) : (
-          <>
-            <p>Total: {reviews.total_results}</p>
-            <ul>
-              {reviews.results?.map((item: Review) => (
-                <li key={item.id}>
+      <h3>Reviews</h3>
+      {reviews?.results?.length === 0 || !reviews ? (
+        <p>We don`t have any reviews for this movie</p>
+      ) : (
+        <>
+          <p>Total: {reviews.total_results}</p>
+          <ul>
+            {reviews.results?.map((item: Review) => (
+              <li key={item.id}>
+                <div>
+                  <Image
+                    src={
+                      item.author_details.avatar_path
+                        ? IMAGES_BASE_URL + item.author_details.avatar_path
+                        : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                    }
+                    alt={item.author_details.name}
+                    width={60}
+                    height={60}
+                  />
+                  <span>{item.author_details.username}</span>
                   <div>
-                    <Image
-                      src={
-                        item.author_details.avatar_path
-                          ? IMAGES_BASE_URL + item.author_details.avatar_path
-                          : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
-                      }
-                      alt={item.author_details.name}
-                      width={60}
-                      height={60}
-                    />
-                    <span>{item.author_details.username}</span>
-                    <div>
-                      <span>Create: {dateFormat(item.created_at)}</span>
-                      <span>Update: {dateFormat(item.updated_at)}</span>
-                    </div>
+                    <span>Create: {dateFormat(item.created_at)}</span>
+                    <span>Update: {dateFormat(item.updated_at)}</span>
                   </div>
-                  <p>{item.content}</p>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </div>
+                </div>
+                <p>{item.content}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </section>
   );
 };

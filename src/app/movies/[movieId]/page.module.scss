@@ -1,3 +1,26 @@
 .movieContainer {
   padding-top: 30px;
+  padding-bottom: 30px;
+}
+.imgAndInfoWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 20px;
+
+  @media (min-width: 550px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+.movieTitle {
+  padding-bottom: 15px;
+}
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.infoItem {
 }

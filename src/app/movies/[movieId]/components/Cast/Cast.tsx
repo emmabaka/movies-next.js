@@ -61,40 +61,39 @@ const Cast = () => {
 
   return (
     <section className={s.cast}>
-      <div className="container">
-        <Swiper
-          className={s.swiper}
-          modules={[Scrollbar, Autoplay]}
-          spaceBetween={20}
-          slidesPerView={currImgValues()?.quantity || 5}
-          scrollbar={{ draggable: true }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: true,
-          }}
-        >
-          {cast?.map((item: CastPerson) => {
-            return (
-              <SwiperSlide key={item.id}>
-                <div className={s.cardWrap}>
-                  <Image
-                    src={
-                      item.profile_path
-                        ? IMAGES_BASE_URL + item.profile_path
-                        : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
-                    }
-                    alt={item.name}
-                    width={currImgValues()?.width}
-                    height={currImgValues()?.height}
-                  />
-                  <p className={s.name}>{item.name}</p>
-                  <p className={s.role}>Role: {item.character}</p>
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
+      <h3>Cast</h3>
+      <Swiper
+        className={s.swiper}
+        modules={[Scrollbar, Autoplay]}
+        spaceBetween={20}
+        slidesPerView={currImgValues()?.quantity || 5}
+        scrollbar={{ draggable: true }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: true,
+        }}
+      >
+        {cast?.map((item: CastPerson) => {
+          return (
+            <SwiperSlide key={item.id}>
+              <div className={s.cardWrap}>
+                <Image
+                  src={
+                    item.profile_path
+                      ? IMAGES_BASE_URL + item.profile_path
+                      : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                  }
+                  alt={item.name}
+                  width={currImgValues()?.width}
+                  height={currImgValues()?.height}
+                />
+                <p className={s.name}>{item.name}</p>
+                <p className={s.role}>Role: {item.character}</p>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </section>
   );
 };
