@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import fetchMovieDetails from "@/requests/fetchMovieDetails";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Autoplay } from "swiper/modules";
@@ -9,24 +10,10 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import s from "./Cast.module.scss";
-import { useMediaQuery } from "react-responsive";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
-export interface CastPerson {
-  adult: boolean;
-  gender: number;
-  id: number;
-  known_for_department: string;
-  name: string;
-  original_name: string;
-  popularity: number;
-  profile_path: string;
-  cast_id: number;
-  character: string;
-  credit_id: string;
-  order: number;
-}
+import { CastPerson } from "./types";
 
 const Cast = () => {
   const [cast, setCast] = useState([]);

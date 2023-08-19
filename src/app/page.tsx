@@ -5,24 +5,7 @@ import s from "./page.module.scss";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
-interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  id: number;
-  title?: string;
-  name?: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  media_type: string;
-  genre_ids: number[];
-  popularity: number;
-  release_date: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import { Movie } from "./types";
 
 const Home = async () => {
   const trending = await fetchMovies("trending");

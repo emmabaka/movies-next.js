@@ -9,29 +9,7 @@ import s from "./page.module.scss";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
-interface Genres {
-  id: number;
-  name: string;
-}
-
-interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  id: number;
-  title?: string;
-  name?: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  media_type: string;
-  genres: Genres[];
-  popularity: number;
-  release_date: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import { Movie } from "./types";
 
 const Movies = () => {
   const [filter, setFilter] = useState("");
@@ -66,13 +44,16 @@ const Movies = () => {
     <section>
       <div className="container">
         <form className={s.form} onSubmit={handleSubmit}>
-          <input className={s.search}
+          <input
+            className={s.search}
             type="text"
             name="query"
             onChange={updateQuery}
             value={searchMovies}
           />
-          <button className={s.searchButton} type="submit">Search</button>
+          <button className={s.searchButton} type="submit">
+            Search
+          </button>
         </form>
         <ul className={s.moviesList}>
           {movies &&

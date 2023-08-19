@@ -1,16 +1,35 @@
 .backButton {
   display: flex;
   align-items: center;
+  gap: 8px;
   padding: 5px 10px;
-  margin-bottom: 15px;
-  background-color: rgb(184, 184, 184);
-  border: 1px solid rgb(184, 184, 184);
-  border-radius: 5px;
+  background: transparent;
+  border: none;
+  outline: none;
   transition: 250ms ease;
   cursor: pointer;
+  position: relative;
+  font-size: 17px;
+  font-weight: 00;
+  font-family: inherit;
+  margin-bottom: 32px;
+
+  svg {
+    height: 18px;
+    width: 18px;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0px;
+    background: rgba(114, 114, 114, 0.5);
+    width: calc(100vw - 60px);
+    height: 1px;
+  }
 
   &:hover {
-    background-color: rgb(168, 168, 168);
-    transition: 250ms ease;
+    opacity: 0.7;
   }
 }

@@ -7,38 +7,35 @@ import s from "./page.module.scss";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w200/";
 
-interface Params {
-  params: {
-    movieId: string;
-  };
-}
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-interface Genres {
-  id: number;
-  name: string;
-}
-
-interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  id: number;
-  title?: string;
-  name?: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  media_type: string;
-  genres: Genres[];
-  popularity: number;
-  release_date: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import { Params, Movie, Genres } from "./types";
 
 const Movie = async ({ params }: Params) => {
   const movie: Movie = await fetchMovieDetails("details", params.movieId);
+
+  const converDate = (date: string) => {
+    const dateObject = new Date(date);
+
+    const day = dateObject.getDate();
+    const month = monthNames[dateObject.getMonth()];
+    const year = dateObject.getFullYear();
+
+    return `${day} ${month} ${year}`;
+  };
 
   return (
     <section>
@@ -60,25 +57,24 @@ const Movie = async ({ params }: Params) => {
             <h2 className={s.movieTitle}>{movie?.title ?? "Not found"}</h2>
             <ul className={s.infoList}>
               <li className={s.infoItem}>
-                Score:{" "}
-                {movie?.vote_average ? movie?.vote_average : "No results"}
+                <span className={s.info}>Score:</span>
+                {movie?.vote_average ? movie?.vote_average : "No results"} (
+                {movie?.vote_count ? movie?.vote_count : "No results"})
               </li>
               <li className={s.infoItem}>
-                Number of voters:{" "}
-                {movie?.vote_count ? movie?.vote_count : "No results"}
+                <span className={s.info}>Release date:</span>
+                {movie?.release_date
+                  ? converDate(movie?.release_date)
+                  : "No results"}
               </li>
               <li className={s.infoItem}>
-                Release date:{" "}
-                {movie?.release_date ? movie?.release_date : "No results"}
-              </li>
-              <li className={s.infoItem}>
-                Original language:{" "}
+                <span className={s.info}>Original language:</span>
                 {movie?.original_language
                   ? movie?.original_language
                   : "No results"}
               </li>
               <li className={s.infoItem}>
-                Genres:{" "}
+                <span className={s.info}>Genres:</span>
                 {movie?.genres
                   ? movie?.genres?.map((item: Genres) => item.name).join(", ")
                   : "No results"}

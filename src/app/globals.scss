@@ -3,10 +3,14 @@
 }
 
 body {
+  height: 100vh;
   margin: 0;
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 code {

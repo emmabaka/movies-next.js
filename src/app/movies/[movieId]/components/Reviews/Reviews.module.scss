@@ -1,0 +1,58 @@
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reviewWrapp {
+  position: relative;
+  margin-bottom: 16px;
+
+  &:not(:last-of-type) {
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      background: rgba(114, 114, 114, 0.5);
+      width: 100%;
+      height: 1px;
+    }
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.reviews h3 {
+  margin-bottom: 16px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.userName {
+  font-weight: 600;
+}
+
+.review {
+  text-align: justify;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.leftDate,
+.updatedDate {
+  font-size: 12px;
+}
+
+.updatedDate {
+  display: block;
+  text-align: right;
+  margin-top: 12px;
+}
